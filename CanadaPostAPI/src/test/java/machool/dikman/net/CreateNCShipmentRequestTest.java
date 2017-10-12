@@ -18,7 +18,7 @@ public class CreateNCShipmentRequestTest {
     }
 
     @Test
-    public void testSend() throws Exception {
+    public void testSaveLabel() throws Exception {
         CreateNCShipmentRequest.Params params = new CreateNCShipmentRequest.Params();
         params.apiUsername = "3fef045f175f8fa3";
         params.apiPassword = "01457d1244a5498ccb4e6f";
@@ -28,7 +28,8 @@ public class CreateNCShipmentRequestTest {
         CreateNCShipmentRequest request = new CreateNCShipmentRequest(params);
         NonContractShipmentInfo info = request.send();
 
-        System.out.println("Result:" + info);
+        request.requestAndSaveShippingLabel("test.pdf");
+
     }
 
     private static NonContractShipment createTestNCShipment(){
@@ -40,7 +41,7 @@ public class CreateNCShipmentRequestTest {
 
         SenderType sender = new SenderType();
         sender.setName("Igor");
-        sender.setCompany("private");
+        sender.setCompany("Igor Dykman");
         sender.setContactPhone("1 (234) 567 8910");
         sender.setAddressDetails(senderAddress);
 
@@ -53,7 +54,7 @@ public class CreateNCShipmentRequestTest {
 
         DestinationType destination = new DestinationType();
         destination.setName("Vincent Tellier");
-        destination.setCompany("Machool.");
+        destination.setCompany("Machool");
         destination.setAddressDetails(destinationAddress);
 
         OptionType option1 = new OptionType();
